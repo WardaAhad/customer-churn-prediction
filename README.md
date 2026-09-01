@@ -1,179 +1,205 @@
-# 📊 Customer Churn Prediction System
+# Customer Churn Prediction System
 
-## 📌 Project Overview
+A Machine Learning project that predicts whether a customer is likely to churn based on customer demographic, service, account, and billing information. The trained Machine Learning model is integrated into a Streamlit web application for interactive churn prediction.
 
-The Customer Churn Prediction System is an end-to-end Machine Learning web application that predicts whether a customer is likely to churn. The project helps businesses identify at-risk customers and improve customer retention through data-driven insights.
+## Project Overview
 
-The application consists of:
+Customer churn prediction helps businesses identify customers who may stop using their services. This project uses the Telco Customer Churn dataset to train and evaluate Machine Learning models and provides a web interface for making predictions.
 
-- 🤖 Machine Learning model for churn prediction
-- ⚡ FastAPI backend
-- 🎨 Streamlit frontend
-- 📊 Single customer prediction
-- 📂 Batch prediction using CSV
-- 📈 Feature importance visualization
+The project covers the complete Machine Learning workflow:
 
----
+* Data preprocessing
+* Exploratory Data Analysis
+* Feature engineering
+* Data transformation
+* Machine Learning model training
+* Model evaluation
+* Model saving using Joblib
+* Customer churn prediction
+* Streamlit application development
 
-# 🚀 Technologies Used
+## Features
 
-- Python
-- Scikit-learn
-- FastAPI
-- Streamlit
-- Pandas
-- NumPy
-- Matplotlib
-- Joblib
+* Customer churn prediction
+* Interactive Streamlit interface
+* Trained Machine Learning model
+* Feature scaling using a saved scaler
+* Customer information input
+* Churn prediction results
+* Probability-based prediction
+* Exploratory Data Analysis
+* Complete model training notebook
+* No separate backend API required
 
----
-
-# 📂 Project Structure
+## Machine Learning Workflow
 
 ```text
-customer-churn-prediction/
-│
-├── backend/
-│   ├── main.py
-│   ├── schemas.py
-│   ├── final_model.pkl
-│   ├── scaler.pkl
-│   └── encoder.pkl
+Customer Data
+      ↓
+Data Preprocessing
+      ↓
+Feature Engineering
+      ↓
+Feature Scaling
+      ↓
+Machine Learning Model
+      ↓
+Churn Prediction
+      ↓
+Prediction Result
+```
+
+## Input Information
+
+The application uses customer information related to:
+
+* Gender
+* Senior citizen status
+* Partner status
+* Dependents
+* Tenure
+* Phone service
+* Internet service
+* Contract type
+* Payment method
+* Monthly charges
+* Total charges
+* Other subscribed services
+
+## Project Structure
+
+```text
+Customer-Churn-Prediction/
 │
 ├── frontend/
-│   └── app.py
+│   ├── app.py
+│   ├── final_model.pkl
+│   ├── scaler.pkl
+│   └── requirements.txt
 │
 ├── notebook/
+│   └── Churn_Model.ipynb
 │
+├── Telco-Customer-Churn.csv
+├── Customer Churn Prediction System.docx
 ├── requirements.txt
-├── README.md
-└── Telco-Customer-Churn.csv
+├── .gitignore
+└── README.md
 ```
 
----
+## Technologies Used
 
-# ✨ Features
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* Joblib
+* Streamlit
+* Jupyter Notebook
 
-## ✅ Single Customer Prediction
+## Dataset
 
-Predict whether an individual customer is likely to churn.
+The project uses the **Telco Customer Churn Dataset**.
 
-## ✅ Batch Prediction
+Dataset file:
 
-Upload a CSV file and generate churn predictions for multiple customers.
+```text
+Telco-Customer-Churn.csv
+```
 
-## ✅ Risk Classification
+The dataset contains customer demographic information, subscribed services, account information, billing details, and the customer's churn status.
 
-Customers are categorized into:
+## Model
 
-- 🟢 Low Risk
-- 🟡 Medium Risk
-- 🔴 High Risk
+The trained Machine Learning model is stored as:
 
-## ✅ Feature Importance
+```text
+frontend/final_model.pkl
+```
 
-Displays the most influential features used by the trained Machine Learning model.
+The feature scaler used during model training is stored as:
 
----
+```text
+frontend/scaler.pkl
+```
 
-# 🌐 API Endpoints
+Both files are loaded by the Streamlit application to generate predictions.
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| /health | GET | API Health Check |
-| /model-info | GET | Model Information |
-| /predict | POST | Single Customer Prediction |
-| /predict-batch | POST | Batch Prediction |
-| /feature-importance | GET | Feature Importance |
+## Installation
 
----
-
-# ⚙️ Running the Backend
+Clone the repository:
 
 ```bash
-cd backend
-uvicorn main:app --reload
+git clone https://github.com/WardaAhad/customer-churn-prediction.git
 ```
 
-Backend URL
-
-```
-http://127.0.0.1:8000
-```
-
----
-
-# ⚙️ Running the Frontend
+Move into the project directory:
 
 ```bash
-cd frontend
-streamlit run app.py
+cd customer-churn-prediction
 ```
 
-Frontend URL
+Install the required dependencies:
 
+```bash
+pip install -r requirements.txt
 ```
+
+## Run the Streamlit Application
+
+Run:
+
+```bash
+streamlit run frontend/app.py
+```
+
+The application will open in your browser at:
+
+```text
 http://localhost:8501
 ```
 
----
+## Model Training
 
-# 📊 Machine Learning Models Evaluated
+The complete model development process is available in:
 
-- Logistic Regression
-- Decision Tree Classifier
-- Random Forest Classifier
+```text
+notebook/Churn_Model.ipynb
+```
 
-### ✅ Final Selected Model
+The notebook includes:
 
-**Random Forest Classifier**
+* Data loading
+* Data cleaning
+* Exploratory Data Analysis
+* Feature preprocessing
+* Feature transformation
+* Model training
+* Model evaluation
+* Model saving
 
----
+## Prediction Process
 
-# 📈 Evaluation Metrics
+The Streamlit application takes customer information as input, applies the same preprocessing and scaling used during training, and passes the processed data to the trained Machine Learning model.
 
-- Accuracy
-- Precision
-- Recall
-- F1-Score
-- ROC-AUC Score
+The application then displays the predicted customer churn result.
 
----
+## Deployment
 
-# 🔮 Future Improvements
+The Streamlit application can be deployed using Streamlit Community Cloud.
 
-- SHAP Explainability
-- Better UI/UX
-- Authentication System
-- Database Integration
-- Docker Support
-- CI/CD Pipeline
+## Future Improvements
 
----
+* Hyperparameter tuning
+* Advanced Machine Learning models
+* Improved feature engineering
+* Model performance optimization
+* Enhanced user interface
+* Additional customer analytics
+* Model monitoring
 
-# 🚀 Deployment
+## Project Goal
 
-- Backend deployed using Railway
-- Frontend deployed using Streamlit Community Cloud
-- REST API developed using FastAPI
-
----
-## 🌐 Live Demo
-
-Frontend:
-https://customer-churn-prediction-vyy5gcd8dblht32juqikyb.streamlit.app/
-
-Backend:
-https://customer-churn-prediction-production-85d6.up.railway.app
-
----
-
-# 👩‍💻 Author
-
-**Warda Ahad**
-
-BS Artificial Intelligence
-
----
-
-_Last updated: July 7, 2026_
+The goal of this project is to build an end-to-end Customer Churn Prediction System that demonstrates how Machine Learning can be used to identify customers who are likely to leave a service and support data-driven customer retention strategies.
