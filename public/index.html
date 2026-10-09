@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f7f2">
+  <title>Churn Signal | Customer Intelligence</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23124c3c%27/%3E%3Cpath d=%27M9 21l5-6 4 3 6-8%27 stroke=%27%23cce86b%27 stroke-width=%273%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#f3f7f2;--white:#fff;--ink:#172923;--muted:#71817a;--line:#dce5dd;--green:#1e705a;--deep:#124c3c;--mint:#d9eee3;--lime:#cce86b;--coral:#dc745d;--amber:#d99c38;--shadow:0 18px 50px #1e3a4410;font-family:"DM Sans",sans-serif;color-scheme:light}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(#c9d8cb .7px,transparent .7px);background-size:20px 20px}button,input,select{font:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;display:flex;height:100vh;flex-direction:column;padding:25px 16px;border-right:1px solid var(--line);background:#f8faf6}.brand{display:flex;align-items:center;gap:10px;padding:0 8px;font:800 14px Manrope,sans-serif}.brand small{display:block;margin-top:2px;color:var(--muted);font:500 9px "DM Mono",monospace;text-transform:uppercase}.brand-mark{display:grid;width:34px;height:34px;place-items:center;border-radius:9px;background:var(--deep);color:var(--lime);font-size:18px}.nav-label{margin:42px 10px 10px;color:#89978f;font:500 10px "DM Mono",monospace;text-transform:uppercase}.nav-item{display:flex;align-items:center;gap:11px;width:100%;padding:11px 12px;border:0;border-radius:6px;background:transparent;color:#63746c;text-align:left;font-size:12px;font-weight:700}.nav-item.active{background:#e3f0e7;color:var(--deep)}.nav-icon{width:20px;text-align:center;font-size:17px}.status{margin-top:auto;padding:14px 9px 0;border-top:1px solid var(--line);color:#63746c;font:500 10px "DM Mono",monospace}.dot{display:inline-block;width:7px;height:7px;margin-right:7px;border-radius:50%;background:#51a775;box-shadow:0 0 0 3px #dcefe2}main{width:min(1400px,100%);margin:auto;padding:31px clamp(18px,4vw,58px) 50px}.topline{display:flex;justify-content:space-between;gap:16px;color:var(--green);font:500 10px "DM Mono",monospace;text-transform:uppercase}.date{color:var(--muted);text-align:right}h1{margin:13px 0 5px;font:800 clamp(26px,3vw,37px)/1.2 Manrope,sans-serif;letter-spacing:0}.lede{margin:0;color:var(--muted);font-size:13px}.workspace{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,.8fr);gap:17px;margin-top:27px;align-items:start}.panel{min-width:0;border:1px solid var(--line);border-radius:7px;background:var(--white);box-shadow:var(--shadow)}.main-panel{overflow:hidden}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:17px 20px;border-bottom:1px solid var(--line)}h2,.side-heading{margin:0;font:700 14px Manrope,sans-serif}.mode-switch{display:flex;gap:3px;padding:3px;border-radius:6px;background:#f0f4ef}.mode-button{padding:8px 11px;border:0;border-radius:4px;background:transparent;color:#708078;font-size:11px;font-weight:700}.mode-button.active{background:white;color:var(--deep);box-shadow:0 1px 4px #1936281f}form{padding:21px 20px}.form-section+.form-section{margin-top:22px;padding-top:19px;border-top:1px solid #edf1ed}.section-title{display:flex;gap:9px;margin:0 0 13px;font:700 11px Manrope,sans-serif}.section-number{color:var(--green);font:500 10px "DM Mono",monospace}.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px 11px}.field{min-width:0}.field label{display:block;margin-bottom:6px;color:#64756d;font-size:10px;font-weight:700}.field input,.field select{width:100%;height:39px;padding:0 9px;border:1px solid var(--line);border-radius:4px;outline:0;background:#fbfcfa;color:var(--ink);font-size:11px}.field input:focus,.field select:focus{border-color:#5a9b7d;box-shadow:0 0 0 3px #dff0e5}.form-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:23px;padding-top:17px;border-top:1px solid #edf1ed}.hint{color:var(--muted);font-size:10px}.primary{display:inline-flex;justify-content:center;align-items:center;gap:8px;min-height:40px;padding:0 15px;border:0;border-radius:4px;background:var(--deep);color:white;font-size:11px;font-weight:700;transition:background .18s,transform .18s}.primary:hover{transform:translateY(-1px);background:#1a624d}.primary:disabled{cursor:wait;opacity:.65;transform:none}.result{display:none;margin:0 20px 20px;padding:17px;border:1px solid var(--line);border-radius:5px;background:#f8faf7;animation:enter .25s ease both}.result.visible{display:block}.result-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.result-label{margin-bottom:4px;color:var(--muted);font:500 9px "DM Mono",monospace;text-transform:uppercase}.risk{padding:6px 9px;border-radius:20px;background:#e8f3eb;color:var(--deep);font-size:10px;font-weight:700}.risk.high{background:#fae7e2;color:#9d3d2c}.risk.medium{background:#fbf0d9;color:#8c6217}.prob-line{display:flex;justify-content:space-between;margin:16px 0 7px;font-size:11px;font-weight:700}.progress{height:7px;overflow:hidden;border-radius:8px;background:#e6ece6}.progress span{display:block;height:100%;border-radius:inherit;background:var(--green);transition:width .5s}.result.high .progress span{background:var(--coral)}.result.medium .progress span{background:var(--amber)}.result-message{margin:10px 0 0;color:var(--muted);font-size:10px}.side-column{display:grid;gap:16px}.insight{padding:19px}.side-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:17px}.tag{padding:5px 7px;border-radius:3px;background:#edf5ef;color:var(--green);font:500 9px "DM Mono",monospace;text-transform:uppercase}.importance-list{display:grid;gap:12px}.importance-row{display:grid;grid-template-columns:minmax(75px,.8fr) 1.2fr 31px;gap:7px;align-items:center}.importance-name{overflow:hidden;color:#54665e;font-size:9px;text-overflow:ellipsis;white-space:nowrap}.track{height:6px;border-radius:6px;background:#edf1ed}.track span{display:block;height:100%;border-radius:inherit;background:var(--green)}.importance-value{color:#73827b;text-align:right;font:9px "DM Mono",monospace}.note{padding:19px;background:var(--deep);color:white}.note .eyebrow{color:var(--lime);font:500 9px "DM Mono",monospace;text-transform:uppercase}.note h3{max-width:190px;margin:13px 0 7px;font:700 16px/1.3 Manrope,sans-serif}.note p{margin:0;color:#c0d5ca;font-size:10px;line-height:1.6}.batch-panel{display:none;padding:20px}.batch-panel.visible{display:block;animation:enter .25s ease both}.single-view.hidden{display:none}.dropzone{display:grid;min-height:200px;place-items:center;padding:22px;border:1px dashed #a9bdb0;border-radius:5px;background:#f8fbf7;text-align:center}.upload-icon{display:grid;width:40px;height:40px;margin:0 auto 12px;place-items:center;border-radius:50%;background:var(--mint);color:var(--green);font-size:19px}.dropzone strong{font:700 12px Manrope,sans-serif}.dropzone p{margin:6px 0 13px;color:var(--muted);font-size:10px}.file-input{max-width:100%;color:#697971;font-size:10px}.batch-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px}.batch-summary{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:16px}.batch-summary.visible{display:grid}.summary-item{padding:11px;border:1px solid var(--line);border-radius:4px;background:#fbfcfa}.summary-item span{color:var(--muted);font-size:9px}.summary-item strong{display:block;margin-top:5px;font:700 18px Manrope,sans-serif}.table-wrap{display:none;max-height:350px;margin-top:15px;overflow:auto;border:1px solid var(--line);border-radius:4px}.table-wrap.visible{display:block}table{width:100%;border-collapse:collapse;font-size:9px;white-space:nowrap}th,td{padding:8px;border-bottom:1px solid #e9efea;text-align:left}th{position:sticky;top:0;background:#f3f7f2;color:#5e7166;font:500 8px "DM Mono",monospace;text-transform:uppercase}td{color:#3d5047}.error{display:none;margin-top:12px;padding:10px;border-radius:4px;background:#fff0ed;color:#983e2e;font-size:10px}.error.visible{display:block}.spinner{display:inline-block;width:12px;height:12px;border:2px solid #ffffff66;border-top-color:white;border-radius:50%;animation:spin .7s linear infinite}@keyframes enter{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}
+    @media(max-width:950px){.shell{grid-template-columns:66px minmax(0,1fr)}.sidebar{align-items:center;padding-inline:8px}.brand{padding:0}.brand>span:last-child,.nav-label,.nav-item>span:last-child,.status-text{display:none}.nav-item{justify-content:center;padding:10px 0}.status{padding-inline:0}.workspace{grid-template-columns:minmax(0,1fr)}.side-column{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:620px){.shell{display:block}.sidebar{position:static;height:auto;flex-direction:row;justify-content:space-between;padding:11px 15px;border-right:0;border-bottom:1px solid var(--line)}.brand>span:last-child{display:block}.sidebar nav,.status{display:none}main{padding:23px 13px 32px}.topline{font-size:9px}.workspace{gap:12px;margin-top:20px}.panel-head{align-items:flex-start;flex-direction:column;padding:15px}.fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 9px}form{padding:17px 15px}.form-footer{align-items:stretch;flex-direction:column}.form-footer .primary{width:100%}.result{margin:0 15px 15px}.side-column{grid-template-columns:1fr;gap:12px}.batch-panel{padding:15px}.batch-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.batch-actions{align-items:stretch;flex-direction:column}.batch-actions .primary{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">↗</span><span>Churn Signal<small>Customer intelligence</small></span></div>
+      <nav aria-label="Main navigation"><div class="nav-label">Workspace</div><button class="nav-item active" type="button"><span class="nav-icon">⌂</span><span>Prediction desk</span></button><button class="nav-item" id="featureNav" type="button"><span class="nav-icon">▤</span><span>Model signals</span></button></nav>
+      <div class="status"><span class="dot"></span><span class="status-text" id="apiStatus">Checking model API</span></div>
+    </aside>
+    <main>
+      <div class="topline"><span>Retention intelligence / workspace</span><span class="date" id="today"></span></div>
+      <h1>Customer churn desk</h1><p class="lede">Assess individual accounts or score a full customer file.</p>
+      <div class="workspace">
+        <section class="panel main-panel" aria-label="Customer prediction">
+          <div class="panel-head"><h2>Prediction workspace</h2><div class="mode-switch" role="tablist" aria-label="Prediction mode"><button class="mode-button active" id="singleTab" type="button" role="tab" aria-selected="true">Single customer</button><button class="mode-button" id="batchTab" type="button" role="tab" aria-selected="false">Batch CSV</button></div></div>
+          <div class="single-view" id="singleView">
+            <form id="customerForm">
+              <section class="form-section"><h3 class="section-title"><span class="section-number">01</span> Customer profile</h3><div class="fields">
+                <div class="field"><label for="gender">Gender</label><select id="gender" name="gender"><option>Female</option><option>Male</option></select></div>
+                <div class="field"><label for="senior">Senior citizen</label><select id="senior" name="SeniorCitizen"><option value="0">No</option><option value="1">Yes</option></select></div>
+                <div class="field"><label for="tenure">Tenure (months)</label><input id="tenure" name="tenure" type="number" min="0" max="100" value="12" required></div>
+                <div class="field"><label for="partner">Partner</label><select id="partner" name="Partner"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label for="dependents">Dependents</label><select id="dependents" name="Dependents"><option>No</option><option>Yes</option></select></div>
+              </div></section>
+              <section class="form-section"><h3 class="section-title"><span class="section-number">02</span> Services</h3><div class="fields">
+                <div class="field"><label for="phone">Phone service</label><select id="phone" name="PhoneService"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label for="lines">Multiple lines</label><select id="lines" name="MultipleLines"><option>No</option><option>No phone service</option><option>Yes</option></select></div>
+                <div class="field"><label for="internet">Internet service</label><select id="internet" name="InternetService"><option>Fiber optic</option><option>DSL</option><option>No</option></select></div>
+                <div class="field"><label for="security">Online security</label><select id="security" name="OnlineSecurity"><option>No</option><option>No internet service</option><option>Yes</option></select></div>
+                <div class="field"><label for="backup">Online backup</label><select id="backup" name="OnlineBackup"><option>No</option><option>No internet service</option><option>Yes</option></select></div>
+                <div class="field"><label for="protection">Device protection</label><select id="protection" name="DeviceProtection"><option>No</option><option>No internet service</option><option>Yes</option></select></div>
+                <div class="field"><label for="support">Tech support</label><select id="support" name="TechSupport"><option>No</option><option>No internet service</option><option>Yes</option></select></div>
+                <div class="field"><label for="tv">Streaming TV</label><select id="tv" name="StreamingTV"><option>No</option><option>No internet service</option><option>Yes</option></select></div>
+                <div class="field"><label for="movies">Streaming movies</label><select id="movies" name="StreamingMovies"><option>No</option><option>No internet service</option><option>Yes</option></select></div>
+              </div></section>
+              <section class="form-section"><h3 class="section-title"><span class="section-number">03</span> Billing</h3><div class="fields">
+                <div class="field"><label for="contract">Contract</label><select id="contract" name="Contract"><option>Month-to-month</option><option>One year</option><option>Two year</option></select></div>
+                <div class="field"><label for="paperless">Paperless billing</label><select id="paperless" name="PaperlessBilling"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label for="payment">Payment method</label><select id="payment" name="PaymentMethod"><option>Electronic check</option><option>Mailed check</option><option>Bank transfer (automatic)</option><option>Credit card (automatic)</option></select></div>
+                <div class="field"><label for="monthly">Monthly charges ($)</label><input id="monthly" name="MonthlyCharges" type="number" min="0" step="0.01" value="70.50" required></div>
+                <div class="field"><label for="total">Total charges ($)</label><input id="total" name="TotalCharges" type="number" min="0" step="0.01" value="850.00"></div>
+              </div></section>
+              <div class="form-footer"><span class="hint">Scored with the trained Random Forest model.</span><button class="primary" id="predictButton" type="submit">Run prediction <span aria-hidden="true">↗</span></button></div>
+            </form>
+            <div class="result" id="singleResult" aria-live="polite"></div>
+          </div>
+          <div class="batch-panel" id="batchView">
+            <div class="dropzone"><div><span class="upload-icon" aria-hidden="true">↑</span><strong>Choose a customer CSV</strong><p>Include fields such as gender, tenure, contract and charges.</p><input class="file-input" id="csvFile" type="file" accept=".csv,text/csv" aria-label="Customer CSV file"></div></div>
+            <div class="error" id="batchError" role="alert"></div>
+            <div class="batch-actions"><span class="hint" id="fileName">No file selected</span><button class="primary" id="batchButton" type="button" disabled>Score customer file <span aria-hidden="true">↗</span></button></div>
+            <div class="batch-summary" id="batchSummary"></div><div class="table-wrap" id="batchTable"></div>
+          </div>
+        </section>
+        <aside class="side-column">
+          <section class="panel insight" id="featurePanel"><div class="side-head"><h2 class="side-heading">Model signals</h2><span class="tag">Top 10</span></div><div class="importance-list" id="importanceList"><span class="hint">Loading feature signals…</span></div></section>
+          <section class="panel note"><span class="eyebrow">Risk guide</span><h3>Read the signal, then act.</h3><p>Probability bands: low at 40% or less, medium above 40%, and high above 70%.</p></section>
+        </aside>
+      </div>
+    </main>
+  </div>
+  <script>
+    const $ = (selector) => document.querySelector(selector);
+    const form = $("#customerForm");
+    const csvFile = $("#csvFile");
+    const batchButton = $("#batchButton");
+    let batchResults = [];
+    $("#today").textContent = new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date());
+
+    function setMode(single) {
+      $("#singleTab").classList.toggle("active", single);
+      $("#batchTab").classList.toggle("active", !single);
+      $("#singleTab").setAttribute("aria-selected", String(single));
+      $("#batchTab").setAttribute("aria-selected", String(!single));
+      $("#singleView").classList.toggle("hidden", !single);
+      $("#batchView").classList.toggle("visible", !single);
+    }
+    $("#singleTab").addEventListener("click", () => setMode(true));
+    $("#batchTab").addEventListener("click", () => setMode(false));
+    $("#featureNav").addEventListener("click", () => $("#featurePanel").scrollIntoView({ behavior: "smooth", block: "center" }));
+
+    async function apiRequest(path, options = {}) {
+      const response = await fetch(path, options);
+      let data = null;
+      try { data = await response.json(); } catch { /* non-JSON error page */ }
+      if (!response.ok) {
+        const detail = data && data.detail;
+        const message = Array.isArray(detail) ? detail.map((item) => item.msg).join(" ") : detail;
+        throw new Error(message || (response.status === 413 ? "The file is too large (limit about 4 MB)." : "The prediction request failed."));
+      }
+      return data;
+    }
+    apiRequest("/api/health").then(() => { $("#apiStatus").textContent = "Model API online"; }).catch(() => { $("#apiStatus").textContent = "Model API unavailable"; });
+    apiRequest("/api/feature-importance").then(({ features }) => {
+      const max = Math.max(...features.map((item) => item.importance), .0001);
+      $("#importanceList").innerHTML = features.map((item) => `<div class="importance-row"><span class="importance-name" title="${escapeHtml(item.feature)}">${escapeHtml(item.feature)}</span><span class="track"><span style="width:${(item.importance / max * 100).toFixed(1)}%"></span></span><span class="importance-value">${(item.importance * 100).toFixed(1)}%</span></div>`).join("");
+    }).catch(() => { $("#importanceList").textContent = "Feature signals are unavailable."; });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = $("#predictButton");
+      const result = $("#singleResult");
+      const payload = Object.fromEntries(new FormData(form).entries());
+      for (const key of ["SeniorCitizen", "tenure"]) payload[key] = Number(payload[key]);
+      for (const key of ["MonthlyCharges", "TotalCharges"]) payload[key] = payload[key] === "" ? null : Number(payload[key]);
+      result.className = "result";
+      button.disabled = true;
+      button.innerHTML = '<span class="spinner"></span> Scoring customer';
+      try {
+        const prediction = await apiRequest("/api/predict", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+        const percentage = prediction.probability * 100;
+        const risk = prediction.risk_level.toLowerCase();
+        result.className = `result visible ${risk}`;
+        result.innerHTML = `<div class="result-top"><div><div class="result-label">Prediction result</div><strong>${prediction.churn_prediction ? "Churn likely" : "Likely to stay"}</strong></div><span class="risk ${risk}">● ${prediction.risk_level} risk</span></div><div class="prob-line"><span>Churn probability</span><span>${percentage.toFixed(1)}%</span></div><div class="progress"><span style="width:${percentage.toFixed(1)}%"></span></div><p class="result-message">${prediction.churn_prediction ? "This account may benefit from a proactive retention conversation." : "This account currently shows a lower likelihood of leaving."}</p>`;
+      } catch (error) {
+        result.className = "result visible";
+        result.textContent = error.message;
+      } finally {
+        button.disabled = false;
+        button.innerHTML = "Run prediction <span aria-hidden=\"true\">↗</span>";
+      }
+    });
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
+    }
+    csvFile.addEventListener("change", () => {
+      const file = csvFile.files[0];
+      $("#fileName").textContent = file ? file.name : "No file selected";
+      batchButton.disabled = !file;
+      $("#batchError").classList.remove("visible");
+    });
+    batchButton.addEventListener("click", async () => {
+      const file = csvFile.files[0];
+      if (!file) return;
+      batchButton.disabled = true;
+      batchButton.innerHTML = '<span class="spinner"></span> Scoring customer file';
+      $("#batchError").classList.remove("visible");
+      try {
+        const data = await apiRequest("/api/predict-batch", { method: "POST", headers: { "Content-Type": "text/csv" }, body: await file.text() });
+        batchResults = data.results;
+        $("#batchSummary").innerHTML = [["Customers scored", data.summary.total_customers], ["Predicted churn", data.summary.predicted_churn], ["Likely retained", data.summary.retained], ["High risk", data.summary.high_risk]].map(([label, value]) => `<div class="summary-item"><span>${label}</span><strong>${value}</strong></div>`).join("");
+        $("#batchSummary").classList.add("visible");
+        const columns = Object.keys(batchResults[0]);
+        $("#batchTable").innerHTML = `<table><thead><tr>${columns.map((key) => `<th>${escapeHtml(key.replaceAll("_", " "))}</th>`).join("")}</tr></thead><tbody>${batchResults.map((row) => `<tr>${columns.map((key) => `<td>${escapeHtml(key === "probability" ? `${(row[key] * 100).toFixed(1)}%` : row[key])}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+        $("#batchTable").classList.add("visible");
+        let download = $("#downloadResults");
+        if (!download) {
+          download = document.createElement("button");
+          download.id = "downloadResults";
+          download.type = "button";
+          download.className = "primary";
+          download.textContent = "Download results CSV";
+          download.addEventListener("click", downloadResults);
+          $(".batch-actions").append(download);
+        }
+      } catch (error) {
+        $("#batchError").textContent = error.message;
+        $("#batchError").classList.add("visible");
+      } finally {
+        batchButton.disabled = !csvFile.files[0];
+        batchButton.innerHTML = "Score customer file <span aria-hidden=\"true\">↗</span>";
+      }
+    });
+    function downloadResults() {
+      if (!batchResults.length) return;
+      const columns = Object.keys(batchResults[0]);
+      const csv = [columns, ...batchResults.map((row) => columns.map((key) => row[key]))].map((line) => line.map((value) => `"${String(value ?? "").replaceAll('"', '""')}"`).join(",")).join("\r\n");
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+      link.download = "churn-predictions.csv";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+  </script>
+</body>
+</html>

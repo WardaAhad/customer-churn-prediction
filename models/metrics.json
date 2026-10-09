@@ -1,0 +1,30 @@
+{
+  "best_params": {
+    "model__max_depth": 12,
+    "model__min_samples_leaf": 5,
+    "model__n_estimators": 200
+  },
+  "test_metrics": {
+    "Logistic Regression": {
+      "accuracy": 0.7991483321504613,
+      "precision": 0.6426332288401254,
+      "recall": 0.5481283422459893,
+      "f1": 0.5916305916305916,
+      "roc_auc": 0.8402800382340025
+    },
+    "Decision Tree": {
+      "accuracy": 0.7842441447835344,
+      "precision": 0.6035502958579881,
+      "recall": 0.5454545454545454,
+      "f1": 0.5730337078651685,
+      "roc_auc": 0.8245821385207573
+    },
+    "Random Forest (tuned)": {
+      "accuracy": 0.7636621717530163,
+      "precision": 0.5381750465549349,
+      "recall": 0.7727272727272727,
+      "f1": 0.6344676180021954,
+      "roc_auc": 0.841372807357462
+    }
+  }
+}
