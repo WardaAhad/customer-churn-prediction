@@ -2,6 +2,7 @@ data/
 docs/
 notebooks/
 tests/
+api/
 train.py
 requirements-dev.txt
 README.md

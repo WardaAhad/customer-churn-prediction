@@ -4,7 +4,7 @@ Usage:
     python train.py
 
 The saved pipeline contains the preprocessing (category encoding + median
-imputation) and the Random Forest, so the API only needs raw customer values.
+imputation) and the Random Forest for use in offline experiments.
 """
 from __future__ import annotations
 
